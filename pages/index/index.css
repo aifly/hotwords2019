@@ -1,0 +1,269 @@
+.lt-full {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0; }
+
+.zmiti-text-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis; }
+
+.zmiti-play {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  position: fixed;
+  z-index: 1223000 !important;
+  right: .5rem;
+  top: .5rem; }
+  .zmiti-play.rotate {
+    -webkit-animation: rotate 5s linear infinite;
+    animation: rotate 5s linear infinite; }
+
+@-webkit-keyframes rotate {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+.zmiti-index-main-ui {
+  overflow: hidden;
+  width: 750px !important; }
+  .zmiti-prevent-img {
+    pointer-events: none; }
+  .zmiti-index-main-ui .zmiti-index-logo {
+    position: absolute;
+    width: 100px;
+    top: 40px;
+    left: 40px; }
+  .zmiti-index-main-ui .zmiti-index-title {
+    position: absolute;
+    width: 460px;
+    left: 50%;
+    margin-left: -230px;
+    top: 100px;
+    z-index: 199; }
+  .zmiti-index-main-ui .zmiti-index-remark {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical; }
+    .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C {
+      width: 600px;
+      height: 520px;
+      margin-top: -94px; }
+      .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover {
+        background: white;
+        height: 60px;
+        width: 100%;
+        -webkit-transition: 1.4s linear;
+        transition: 1.4s linear;
+        -webkit-transform-origin: right;
+        transform-origin: right; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover.active {
+          -webkit-transform: scale(0, 1);
+          transform: scale(0, 1); }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(1) {
+          -webkit-transition-delay: 0s;
+          transition-delay: 0s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(2) {
+          -webkit-transition-delay: 1.4s;
+          transition-delay: 1.4s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(3) {
+          -webkit-transition-delay: 2.8s;
+          transition-delay: 2.8s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(4) {
+          -webkit-transition-delay: 4.2s;
+          transition-delay: 4.2s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(5) {
+          -webkit-transition-delay: 5.6s;
+          transition-delay: 5.6s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(6) {
+          -webkit-transition-delay: 7s;
+          transition-delay: 7s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(7) {
+          -webkit-transition-delay: 8.4s;
+          transition-delay: 8.4s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(8) {
+          -webkit-transition-delay: 9.8s;
+          transition-delay: 9.8s; }
+        .zmiti-index-main-ui .zmiti-index-remark .zmiti-index-cover-C .zmiti-index-cover:nth-of-type(9) {
+          -webkit-transition-delay: 11.2s;
+          transition-delay: 11.2s; }
+  .zmiti-index-main-ui .zmiti-index-entry {
+    width: 400px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    bottom: 100px; }
+  .zmiti-index-main-ui .flash {
+    -webkit-animation: flash 1s infinite alternate;
+    animation: flash 1s infinite alternate; }
+  .zmiti-index-main-ui .flash1 {
+    -webkit-animation: flash 1s 0.4s infinite alternate;
+    animation: flash 1s 0.4s infinite alternate; }
+@-webkit-keyframes flash {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1); } }
+  .zmiti-index-main-ui .zmiti-btns {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: horizontal;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    color: #ffd451;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    z-index: 1003; }
+    .zmiti-index-main-ui .zmiti-btns > div {
+      width: 120px;
+      height: 120px;
+      text-align: center;
+      line-height: 60px;
+      margin: 0 50px;
+      font-size: 24px; }
+  .zmiti-index-main-ui .zmiti-share {
+    bottom: 60px; }
+    .zmiti-index-main-ui .zmiti-share > div {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      line-height: 60px;
+      margin: 0 50px;
+      font-size: 24px; }
+  .zmiti-index-main-ui .zmiti-cacheimg {
+    position: relative;
+    z-index: 2009;
+    -webkit-transition: 0.2s 0.2s;
+    transition: 0.2s 0.2s; }
+    .zmiti-index-main-ui .zmiti-cacheimg.active {
+      -webkit-transform: scale(0.74);
+      transform: scale(0.74);
+      -webkit-transform-origin: center 10%;
+      transform-origin: center 10%; }
+    .zmiti-index-main-ui .zmiti-cacheimg > div {
+      position: absolute;
+      left: -40px;
+      width: 30px;
+      bottom: 0;
+      color: #ffd451; }
+  .zmiti-index-main-ui .zmiti-prize {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: vertical;
+    color: #fcffb4; }
+    .zmiti-index-main-ui .zmiti-prize .zmiti-input-tip {
+      text-align: left;
+      width: 90%;
+      margin-bottom: 20px;
+      font-size: 32px; }
+    .zmiti-index-main-ui .zmiti-prize .zmiti-prize-tip {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      bottom: 0;
+      left: 0; }
+    .zmiti-index-main-ui .zmiti-prize .zmiti-prize-img {
+      width: 90%;
+      margin-top: 20px; }
+    .zmiti-index-main-ui .zmiti-prize .lt-full {
+      z-index: 100; }
+    .zmiti-index-main-ui .zmiti-prize .zmiti-input {
+      border: 1px solid #fff;
+      width: 90%;
+      position: relative;
+      z-index: 1000;
+      padding: 10px 0; }
+      .zmiti-index-main-ui .zmiti-prize .zmiti-input img {
+        width: 100px;
+        margin-left: 4%; }
+      .zmiti-index-main-ui .zmiti-prize .zmiti-input input {
+        outline: none;
+        height: 60px;
+        color: #fcffb4;
+        background: transparent;
+        width: 80%;
+        padding-left: 20px;
+        box-sizing: border-box;
+        font-size: 30px;
+        border: none; }
+  .zmiti-index-main-ui .zmiti-arrow {
+    position: absolute;
+    width: 500px;
+    right: 30px;
+    top: 10px; }
+  .zmiti-index-main-ui .zmiti-createimg {
+    z-index: 2004;
+    position: relative; }
+  .zmiti-index-main-ui .zmiti-mask {
+    position: absolute;
+    z-index: 1002;
+    background: rgba(0, 0, 0, 0.8); }
+
+.zmiti-qrcode {
+  position: absolute;
+  width: 100%;
+  top: 81vh;
+  left: 0;
+  z-index: 2098;
+  text-align: center;
+  font-size: 22px;
+  color: #fff; }
+  .zmiti-qrcode img {
+    width: 140px;
+    height: 140px; }
+
+.zmiti-nickname {
+  position: absolute;
+  z-index: 2003;
+  bottom: 23vh;
+  left: 50%;
+  color: #fff;
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0); }
+
+.zmiti-open {
+  position: absolute;
+  z-index: 10;
+  bottom: 10vh;
+  width: 150px;
+  left: 50%;
+  margin-left: -75px; }
+
+.zmiti-change-btn {
+  position: absolute;
+  bottom: 8vh;
+  z-index: 2004;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
+  font-size: 24px;
+  color: #ffd451;
+  text-align: center; }
+  .zmiti-change-btn img {
+    width: 100px; }
+
+@media all and (min-height: 1110px) {
+  .zmiti-nickname {
+    bottom: 23.5vh; } }
+@media all and (min-height: 1448px) {
+  .zmiti-nickname {
+    bottom: 26vh; }
+
+  .zmiti-open {
+    position: absolute;
+    bottom: auto;
+    top: 65vh; }
+
+  .zmiti-change-btn {
+    bottom: 10vh; } }
+
+/*# sourceMappingURL=index.css.map */
