@@ -1,13 +1,16 @@
 <template>
 	<transition name='loading'>
-		<div ref='page'  class="lt-full zmiti-loading " :style="{background:'url('+imgs.index+') no-repeat center center',backgroundSize:'cover'}" v-if='show' >
-			<div class='zmiti-loading-bar'>
-				<img :src="imgs.loading" alt="">
-				<div>
-					<span :style='{width:width+"px"}'></span>
+		<section v-if='show' class="lt-full zmiti-loading1" :style="{background:'url('+imgs.loading+') no-repeat center bottom',backgroundSize:'cover'}">
+			<div class='zmiti-loading-ui'>
+				<div class='zmiti-loading-pig'>
+					<img :style="{WebkitTransform:'translateX('+(width/100)*400+'px)'}" :src="imgs.title" alt="" >
 				</div>
+				<div class='zmiti-loading-C'>
+					<div class='zmiti-loading-bar red active' :data-percent="width" :style="{width:(width/100)*500+'px'}">  </div>
+				</div>
+				
 			</div>
-		</div>
+		</section>
 	</transition>
 </template>
 
@@ -16,9 +19,9 @@
 	import zmitiUtil from '../lib/util';
 	export default {
 		props:['width','obserable'],
-		name:'zmitiloading',
+		name:'zmitiindex',
 		data(){
-			return {
+			return{
 				imgs:window.imgs,
 				viewW:Math.min(window.innerWidth,750),
 				viewH:window.innerHeight,
@@ -35,6 +38,7 @@
 			},
 		},
 		mounted(){
+
 			this.obserable.on('hideloading',()=>{
 				this.show = false;
 			});

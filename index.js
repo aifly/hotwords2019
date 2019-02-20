@@ -3,6 +3,7 @@ import './pages/css/index.css';
 import Index from './pages/index/index';
 import Loading from './pages/loading/index';
 import Music from './pages/music/index';
+import Main from './pages/main/index';
 import Obserable from './pages/lib/obserable';
 
 import zmitiUtil from './pages/lib/util'
@@ -57,6 +58,7 @@ new Vue({
 		template: `<div id='app1'>
 		<Loading :width='width' :obserable='obserable'></Loading>
 		<Index :pv='pv' :nickname='nickname' :headimgurl='headimgurl'   v-if='show && !isShare'  :obserable='obserable'></Index>
+		<Main :width='width' :obserable='obserable'></Main>
 	</div>`,
 	methods: {
 
@@ -92,7 +94,8 @@ new Vue({
 	components: {
 		Index,
 		Loading,
-		Music
+		Music,
+		Main
 	},
 	mounted() {
 
@@ -121,12 +124,12 @@ new Vue({
 	
 
 		s.loading(arr, (scale) => {
-			s.width = (scale) * 400;
+			s.width = (scale) * 100 | 0;
 
 		}, () => {
 			obserable.trigger({
 				type:'hideloading'
-			})
+			});
 			setTimeout(() => {
 				obserable.trigger({
 					type: 'initIndex'

@@ -19,6 +19,13 @@ $bgColor: #f23426;
         width: 100px;
         top: 40px;
         left: 40px;
+
+
+        &.hide{
+            opacity:0;
+            @include transition(opacity .4s);
+
+        }
     }
     
     .zmiti-index-title{
@@ -30,6 +37,11 @@ $bgColor: #f23426;
         margin-left: -$size/2;
         top:100px;
         z-index: 199;
+        &.active{
+            @include transition(.5s);
+            @include transformOrigin(left top);
+            @include transform(scale(.34) translate3d(-320px,-180px,0));;
+        }
     }
 
 
@@ -72,7 +84,7 @@ $bgColor: #f23426;
         bottom:100px;
     }
     
-    .flash{
+    @at-root.flash{
         @include animation(flash 1s infinite alternate);
     }
     .flash1 {

@@ -1,10 +1,10 @@
 <template>
 	
 	<div  class="lt-full zmiti-index-main-ui " :style="{background:'url('+imgs.index+') no-repeat center center',backgroundSize:'cover'}">
-		<div class="zmiti-index-logo">
+		<div class="zmiti-index-logo" :class='{"hide":hiddenLogo}'>
 			<img :src="imgs.logo" alt="">
 		</div>
-		<div class='zmiti-index-title'>
+		<div class='zmiti-index-title' :class='{"active":scaleTiele}'>
 			<img :src="imgs.title" alt="">
 		</div>
 
@@ -39,6 +39,8 @@
 		name:"zmiti-index-page",
 		data(){
 			return{
+				scaleTiele:false,
+				hiddenLogo:false,
 				showRemark:false,
 				showRemarkPage:false,
 				imgs:window.imgs,
@@ -84,10 +86,14 @@
 			},
 			 
 			entryRemark(){
-				this.showRemarkPage = true;
+				this.hiddenLogo = true;
+				this.scaleTiele = true;
 				setTimeout(()=>{
-					this.showRemark = true;
-				},10)
+					this.showRemarkPage = true;
+					setTimeout(()=>{
+						this.showRemark = true;
+					},10)
+				},400)
 			},
 		  
 		 

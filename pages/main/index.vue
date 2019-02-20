@@ -1,80 +1,62 @@
 <template>
 	<transition name='main'>
-		<div class='zmiti-main-ui lt-full' :class="{'show':show}" >
-			<transition name='detail'>
-				<div v-if='showDetail && index >-1' class='zmiti-main-detail'>
-					<div class='lt-full' :style="{background:'url('+sceneList[index].imgsList[0].img+') no-repeat center center',backgroundSize:'cover'}"></div>
-					<transition name='create'>
-						<div v-if='createImg && !creating' class='zmiti-createimg'>
-							<div class='zmiti-createimg-img'>
-								<img :src="createImg" alt="">
-								<div>长按保存至手机</div>
-							</div>
-							<div class='zmiti-btns'>
-								<div v-tap='[reChangeScene]'>看看其它场景</div>
-								<div v-tap='[share]'>分享</div>
-							</div>
-
-							<div class='zmiti-mask' @touchstart='showMask=false' v-if='showMask'>
-								<img :src="imgs.arrow" alt="">
-							</div>
-						</div>
-					</transition>
-					<div class='zmiti-creating' v-if='creating'>
-						<div>
-							<img :src="imgs.waiting" alt="">
-						</div>
-						<div class='zmiti-point'>
-							<img :src="imgs.point" alt="">
-						</div>
-					</div>
-					<transition name='create'>
-						<div v-if='!createImg && !creating && index >-1' class='zmiti-main-detail-C'>
-							<div class='zmiti-main-detail-content'>
-								<div class='zmiti-detail-img' :class="{'active':isWidth}">
-									<img @load='imgLoad' :src="sceneList[index]['imgsList'+sceneIndex][0].img" alt="">
-								</div>
-								<div class='zmiti-detail-content'>
-									<div v-for='(img,k) in sceneList[index].imgsList' :key="k">
-										{{img.content}}
+		<div class='zmiti-main-ui lt-full' :class="{'show':show}" :style="{background:'url('+imgs.mainBg+') no-repeat center bottom',backgroundSize:'cover'}" >
+			<div class="lt-full zmiti-main-road">
+				<div class='zmiti-road'>
+					<img :src="imgs.road" alt="">
+				</div>
+				<transition name='modal'>
+					<div class='zmiti-modal-C lt-full'>
+						<div class='zmiti-modal-list' v-swipeleft='swipeLeft' v-swiperight='swipeRight'>
+							<ul>
+								<li :style='{height:viewH+"px"}' :class="hw.className" class='lt-full' v-for='(hw,i) in hotWords' :key="i">
+									<div class="zmiti-title1" :class="{'active':(hw.className||'').indexOf('active')>-1,'shot':hw.name.length<=2,'long':hw.name.length>=5}" >
+										<span v-html='hw.name'></span>
+										<span class='zmiti-down' v-if="(hw.className||'').indexOf('active')>-1">
+											<img :src='imgs.down' />
+										</span>
 									</div>
-								</div>
-								<div class='zmiti-detail-close' v-tap='[toggleDetail,false]'>
-
-								</div>
+									<div class="zmiti-title">
+										<span>{{hw.name.replace(/<[^>]*>|<\/[^>]*>/gm,'')}}讨论室</span>
+										<img :src="imgs.titleBg" alt="">
+									</div>
+									<img :src="imgs[openDoor&&(hw.className||'').indexOf('active')>-1?'doorOpen':'door']" alt="" class='zmiti-prevent-img'>
+								</li>
+							</ul>
+							<div class='zmiti-ar zmiti-ar-l' v-tap='[swipeRight]'>
+								<img :src="imgs.arr" alt="">
 							</div>
-
-							<div class='zmiti-btn zmiti-create-card' v-tap='[createCard]'>
-								生成明信片
+							<div class='zmiti-ar zmiti-ar-r' v-tap='[swipeLeft]'>
+								<img :src="imgs.arr" alt="">
+							</div>
+							<div class='zmiti-person'>
+								<img :src="person" alt="">
+							</div>
+							<div class="zmiti-discuss flash" v-tap='[entryDiscuss]'>
+								<img :src="imgs.discussBtn" alt="">
 							</div>
 						</div>
-					</transition>
-				</div>
-			</transition>
-			<div v-show='!showDetail && show '>
-				<div>正在进入，请稍后...</div>
-				<iframe @load='load' @error='error' :src=" href || sceneList[index]['href']" frameborder="0"></iframe>
-
-				<div class='zmiti-scene-list' :class='{"show":showScene}'>
-					<ul>
-						<li :class="{'active':i === index}" v-for='(scene,i) in sceneList' :key="i">
-							<div v-tap='[changeScene,scene,i]'>
-								<img @touchstart='imgStart' :src='scene.thumbnail' alt="">
-							</div>
-							<div>
-								{{scene.name}}
-							</div>
-						</li>
-					</ul>
-					<div class='zmiti-change-scene' v-tap='[change]'>
-						切换场景
 					</div>
-				</div>
-				<div class='zmiti-btn zmiti-continue'  v-tap='[toggleDetail,true]' v-if='showContinus'>
-					继续
-				</div>
+			 	</transition>
+			 	<div v-if='showScene' class="zmiti-scene-ui lt-full" :style="{background:'url('+imgs.scene+') no-repeat center bottom',backgroundSize:'cover'}">
+			 		<div class="zmiti-back" v-tap='[backToMain]'>
+			 			<img :src="imgs.back" alt="">
+			 		</div>
+
+			 		<div class="zmiti-scene-title">
+			 			<img :src="imgs.sceneTitle" alt="">
+			 		</div>
+
+			 		<div class="zmiti-black">
+			 			<img :src="imgs.black" alt="">
+			 		</div>
+
+			 		<div class="zmiti-say flash">
+			 			<img :src="imgs.say" alt="">
+			 		</div>
+
+			 	</div>
 			</div>
-			
 		</div>
 	</transition>
 </template>
@@ -82,16 +64,7 @@
 <script>
 	import './index.css';
 	
-	import {
-	
-		imgs,
-	
-		mainImgList
-	
-	} from '../lib/assets.js';
-	
 	import zmitiUtil from '../lib/util';
-	import Toast from '../toast/toast.vue'
 	
 	export default {
 	
@@ -102,100 +75,146 @@
 		data() {
 	
 			return {
-				href:'',
-				errMsg:'',
-				imgs,
-				showFrame:false,
-				isWidth:false,
-				loaded:false,
-				createImg:'',
-				showContinus:false,
-				creating:false,
-				showTeam: false,
-				showMask: false,
-				sceneIndex:'',
-				show: false,	
 				showScene:true,
-				showDetail:false,
-				sceneList:window.config.sceneList,
+				show:true,
+				imgs:window.imgs,
 				viewW:Math.min( window.innerWidth,750),
 				viewH: window.innerHeight,
-				index:0,
-				lastIndex:0,
+				currentIndex:0,
+				person:window.imgs.person,
+				openDoor:false,
+				hotWords:window.config.hotWords
 			}
 		},
 	
-		components: {Toast},
+		components: {},
 		methods: {
 
-			error(){
-				document.title = 'error';
+			backToMain(){
+				this.showScene = false;
 			},
-			imgLoad(e){
-				this.isWidth = e.target.width>e.target.height;
+
+			swipeLeft(){
+				var s = this;
+				this.isLeftFirst = true;
+				this.iNow = (s.currentIndex + 1) % s.hotWords.length;
+				this.initLeft();
 			},
-			share(){
-				this.showMask = true;
+			swipeRight(){
+				var s = this;
+				this.iNow = s.currentIndex-1;
+				if(this.iNow<0){
+					this.iNow = this.hotWords.length - 1;
+				}
+				this.isRightFirst=  true;
+				this.initRight();
 			},
-			toggleDetail(flag){
-				this.showDetail = flag;
-			},
-			imgStart(e){
-				e.preventDefault();
-			},
-			load(){
-				this.loaded = true;
-				setTimeout(()=>{
-					this.showContinus = true;
-				},2000)
+			initLeft: function(flag) {
+				var s = this;
+
+				this.person = flag ? this.imgs.person : this.imgs.personL;
 				
+				s.currentIndex = (s.currentIndex + 1) % s.hotWords.length;
 				
+				//s.loadMusic(s.hotWords[s.currentIndex].audio);
+				//this.iNow = s.currentIndex;
+				var classList = [
+					'left1 transition',
+					'left transition',
+					'active transition',
+					'right ',
+					'right1 '
+				]
+				var hotWords = s.hotWords,
+					currentIndex = s.currentIndex;
+
+
+				hotWords.forEach(function(list, i) {
+
+					if (currentIndex > i) {
+						hotWords[i].className = classList[0]
+					} else if (currentIndex < i) {
+						hotWords[i].className = classList[4]
+					}
+					(hotWords[currentIndex + 1] || hotWords[0])['className'] = classList[3];
+					(hotWords[currentIndex + 2] || hotWords[1])['className'] = classList[4];
+					(hotWords[currentIndex - 1] || hotWords[hotWords.length - 1])['className'] = classList[1];
+					//(hotWords[currentIndex - 2] || hotWords[hotWords.length - 2])['className'] = classList[0];
+				});
+
+				hotWords[currentIndex].className = classList[2];
+				s.hotWords = hotWords.concat([]);
 			},
-			change(){
-				if(this.loaded){
-					this.showScene = !this.showScene;
+			initRight: function() {
+				this.person = this.imgs.personR;
+				var s = this;
+				s.currentIndex = s.currentIndex - 1;
+
+				if (s.currentIndex < 0) {
+					s.currentIndex = s.hotWords.length - 1;
 				}
+				//this.iNow = s.currentIndex;
+				
+				var hotWords = s.hotWords,
+					currentIndex = s.currentIndex;
+
+
+				//console.log(s.currentIndex)
+
+				s.currentIndex = s.currentIndex % hotWords.length;
+
+				var classList = [
+					'left1 ',
+					'left ',
+					'active transition',
+					'right transition',
+					'right1 transition'
+				]
+
+				hotWords.forEach(function(list, i) {
+
+					if (currentIndex > i) {
+						hotWords[i].className = classList[0]
+					} else if (currentIndex < i) {
+						hotWords[i].className = classList[4]
+					}
+
+					(hotWords[currentIndex + 1] || hotWords[0])['className'] = classList[3];
+					(hotWords[currentIndex + 2] || hotWords[1])['className'] = classList[4];
+					(hotWords[currentIndex - 1] || hotWords[hotWords.length - 1])['className'] = classList[1];
+					//(hotWords[currentIndex - 2] || hotWords[hotWords.length - 2])['className'] = classList[0];
+				})
+
+
+
+				hotWords[currentIndex].className = classList[2];
+				s.hotWords = hotWords.concat([]);
 			},
-			changeScene(scene,index){
-				this.index = index;
-				this.loaded = false;
-				document.title = scene.name;
-				this.sceneIndex = index === 3 && Math.random()-.5>0 ? "1":'';
-				if(index === this.lastIndex){
-					this.href = this.sceneList[this.index]['href']+'?t='+new Date().getTime();
-				}
-				else{
-					this.href = '';
-				}
-				this.lastIndex = index;
-			},
-			reChangeScene(){
-				this.createImg = '';
-				this.showDetail = false;
-			},
-			createCard(){
-				this.creating = true;
-				setTimeout(() => {
-					this.createImg = this.sceneList[this.index]['createImg'+this.sceneIndex];
-					this.creating = false;
-				}, 3000);
+
+			entryDiscuss(){
+				this.openDoor = true;
 			}
+
+			
+
 			
 		},
 	
 		mounted() {
+			this.initLeft(true);
 			var {obserable } = this;
 			obserable.on('toggleMain',(data)=>{
-				document.body.style.position = 'fixed'; //防止iframe页上下滚动时带动本页移动
-				document.body.style.position = 'static'; //取消禁止滚动
 				this.show = data.show;
-				this.index = 0;
-				setTimeout(() => {
-					this.showScene = false;
-					this.showFrame = true;
-				}, 3000);
+				
 			});
 
+
+			obserable.trigger({
+				type:'toggleMain',
+				data:{
+					show:true
+				}
+			})
 			
 		}
 	
