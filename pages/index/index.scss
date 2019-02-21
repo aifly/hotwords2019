@@ -23,7 +23,7 @@ $bgColor: #f23426;
 
         &.hide{
             opacity:0;
-            @include transition(opacity .4s);
+            @include transition(opacity .4s .2s);
 
         }
     }
@@ -39,8 +39,12 @@ $bgColor: #f23426;
         z-index: 199;
         &.active{
             @include transition(.5s);
-            @include transformOrigin(left top);
-            @include transform(scale(.34) translate3d(-320px,-180px,0));;
+            //@include transform(scale(.34) translate3d(-320px,-180px,0));;
+            width: 156px;
+            left: 30px;
+            top: 30px;
+            margin-left: 0;
+
         }
     }
 
@@ -83,6 +87,9 @@ $bgColor: #f23426;
         margin-left: -200px;
         bottom:100px;
     }
+
+
+
     
     @at-root.flash{
         @include animation(flash 1s infinite alternate);

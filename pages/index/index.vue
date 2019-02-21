@@ -12,6 +12,8 @@
 			<img :src="imgs.entry" alt="" class='zmiti-prevent-img'>
 		</div>
 
+		
+
 		<div v-show='showRemarkPage' class="lt-full zmiti-index-remark" :style="{background:'url('+imgs.remark+') no-repeat center center',backgroundSize:'cover'}">
 
 			<div class='zmiti-index-cover-C'>
@@ -35,7 +37,7 @@
 	import zmitiUtil from '../lib/util';
 	import '../lib/html2canvas.js';
 	export default {
-		props:[],
+		props:['obserable'],
 		name:"zmiti-index-page",
 		data(){
 			return{
@@ -56,43 +58,22 @@
 		methods:{
 			
 
-			html2img(){
-				var s = this;
-
-				var {obserable} = this;
-
-				//document.title = '开始截图....'
-
-				setTimeout(()=>{
-					//this.showLoading = true;
-					var ref = 'page';
-					var dom = this.$refs[ref];
-					html2canvas(dom,{
-						useCORS: true,
-						onrendered: function(canvas) {
-					        var src = canvas.toDataURL();
-							//s.mergeImg = '';
-							//s.createImg = src;
-							s.cacheImg = src;
-
-							setTimeout(() => {
-								s.createClass = 'active';
-							}, 20);
-					      },
-					      width: dom.clientWidth,
-					      height:dom.clientHeight
-					})
-				},500);
-			},
-			 
+		 	 
 			entryRemark(){
 				this.hiddenLogo = true;
 				this.scaleTiele = true;
 				setTimeout(()=>{
-					this.showRemarkPage = true;
+					///this.showRemarkPage = true;
 					setTimeout(()=>{
 						this.showRemark = true;
 					},10)
+
+					this.obserable.trigger({
+						type:'toggleMain',
+						data:{
+							show:true
+						}
+					});
 				},400)
 			},
 		  
@@ -103,7 +84,7 @@
 				var s = this;
 				axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
 						"secretKey": s.secretKey, // 请求秘钥
-						"nm": "gcbn" // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+						"nm": "hotwords2019" // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
 					}).then(function (data) {
 						var dt = data.data;
 						if (typeof dt === 'string') {
@@ -116,7 +97,7 @@
 		},
 		mounted(){
 			
- 
+ 			this.updatePv();
 		}
 	}
 

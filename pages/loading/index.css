@@ -39,7 +39,7 @@
   top: 50%;
   margin: -150px 0 0 -250px; }
   .zmiti-loading-ui img {
-    width: 120px; }
+    width: 140px; }
   .zmiti-loading-ui.loading-enter-active, .zmiti-loading-ui.loading-leave-active {
     -webkit-transition: 0.4s 0.2s;
     transition: 0.4s 0.2s; }

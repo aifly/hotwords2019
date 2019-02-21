@@ -44,7 +44,20 @@
   -webkit-box-orient: horizontal;
   z-index: -1;
   opacity: 0; }
+  .zmiti-main-ui.main-enter-active, .zmiti-main-ui.main-leave-active {
+    -webkit-transition: 0.4s;
+    transition: 0.4s; }
+  .zmiti-main-ui.main-leave-to, .zmiti-main-ui.main-enter {
+    opacity: 0; }
+  .zmiti-h5-title {
+    position: absolute;
+    width: 156px;
+    left: 30px;
+    top: 30px;
+    z-index: 1012; }
   .zmiti-main-ui.show {
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
     z-index: 270;
     opacity: 1; }
   .zmiti-main-ui .zmiti-road {
@@ -69,6 +82,11 @@
       left: 50%;
       -webkit-transform: translate3d(-50%, 0, 0);
       transform: translate3d(-50%, 0, 0); }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-person.person-enter-active, .zmiti-main-ui .zmiti-modal-C .zmiti-person.person-leave-active {
+        -webkit-transition: 0.4s;
+        transition: 0.4s; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-person.person-leave-to, .zmiti-main-ui .zmiti-modal-C .zmiti-person.person-enter {
+        opacity: 0; }
     .zmiti-main-ui .zmiti-modal-C .zmiti-discuss {
       position: absolute;
       bottom: 100px;
@@ -81,9 +99,12 @@
     .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul {
       perspective: 500px;
       -webkit-perspective: 500px;
-      position: relative;
-      -webkit-transition: 0.4s;
-      transition: 0.4s; }
+      position: relative; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul.active {
+        -webkit-transform: translate3d(0, 0, 450px);
+        transform: translate3d(0, 0, 450px);
+        opacity: 0;
+        -webkit-transition: -webkit-transform 1s .5s,opacity .5s 1s; }
       .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li {
         width: 750px;
         text-align: center;
@@ -198,7 +219,12 @@
           margin-left: -20px; }
   .zmiti-main-ui .zmiti-scene-ui {
     z-index: 300; }
-    .zmiti-main-ui .zmiti-scene-ui .zmiti-back {
+    .zmiti-main-ui .zmiti-scene-ui.scene-enter-active, .zmiti-main-ui .zmiti-scene-ui.scene-leave-active {
+      -webkit-transition: 1s;
+      transition: 1s; }
+    .zmiti-main-ui .zmiti-scene-ui.scene-leave-to, .zmiti-main-ui .zmiti-scene-ui.scene-enter {
+      opacity: 0; }
+    .zmiti-back {
       position: absolute;
       left: -40px;
       top: 40px;
@@ -208,19 +234,224 @@
       width: 400px;
       left: 230px;
       z-index: 10; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-scene-title span {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        color: #fff;
+        font-size: 34px;
+        text-align: center;
+        line-height: 220px; }
     .zmiti-main-ui .zmiti-scene-ui .zmiti-black {
       position: absolute;
       left: 50%;
-      width: 90%;
+      width: 700px;
       top: 100px;
       -webkit-transform: translate3d(-50%, 0, 0);
       transform: translate3d(-50%, 0, 0); }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C {
+        position: absolute;
+        left: 10%;
+        top: 0;
+        height: 590px;
+        overflow-y: hidden;
+        width: 600px;
+        margin-top: 100px;
+        z-index: 100; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C ul {
+          padding-bottom: 30px; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C li {
+          display: -webkit-box;
+          -webkit-box-align: center;
+          -webkit-box-pack: center;
+          -webkit-box-orient: horizontal;
+          margin: 30px 0;
+          -webkit-box-align: start;
+          width: 500px;
+          -webkit-box-pack: start; }
+          .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C li div {
+            margin: 0 10px; }
+          .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C li .zmiti-talk-content {
+            background: #dbdbdb;
+            color: #08597e;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            position: relative; }
+            .zmiti-main-ui .zmiti-scene-ui .zmiti-black .zmiti-talk-C li .zmiti-talk-content:before {
+              content: "";
+              width: 30px;
+              height: 30px;
+              position: absolute;
+              background: #dbdbdb;
+              -webkit-transform: rotate(45deg);
+              transform: rotate(45deg);
+              border-radius: 5px;
+              left: -10px;
+              top: 14px; }
+    .zmiti-main-ui .zmiti-scene-ui .zmiti-photo {
+      position: absolute;
+      bottom: 200px;
+      right: 10px;
+      width: 120px; }
     .zmiti-main-ui .zmiti-scene-ui .zmiti-say {
       position: absolute;
       width: 340px;
       left: 50%;
       margin-left: -170px;
       bottom: 100px; }
+    .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C {
+      width: 90%;
+      margin: 140px auto;
+      position: relative; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C textarea {
+        position: absolute;
+        width: 580px;
+        height: 340px;
+        left: 50%;
+        -webkit-transform: translate3d(-50%, 0, 0);
+        transform: translate3d(-50%, 0, 0);
+        top: 30px;
+        border: none;
+        outline: none;
+        color: #1082b6;
+        font-size: 30px; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C textarea::-webkit-input-placeholder {
+          color: #1082b6; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit {
+        text-align: center;
+        margin-top: 40px; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit img {
+          width: 400px; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-input-btns {
+        position: relative;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        -webkit-box-orient: horizontal;
+        margin-top: 40px; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-input-btns div {
+          margin: 0 10px; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit-success {
+        position: absolute;
+        background: #fff;
+        left: 50px;
+        top: 30px;
+        text-align: center;
+        width: 580px; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit-success img {
+          width: 100px;
+          margin: 20px 0; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit-success div {
+          width: 100%;
+          line-height: 60px;
+          font-size: 34px;
+          color: #1082b6; }
+  .zmiti-main-ui .zmiti-main-share-ui {
+    z-index: 1002; }
+    .zmiti-main-ui .zmiti-main-share-ui > .lt-full {
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10022; }
+      .zmiti-main-ui .zmiti-main-share-ui > .lt-full .zmiti-waiting-C {
+        position: absolute;
+        left: 50%;
+        width: 230px;
+        height: 400px;
+        margin-left: -115px;
+        top: 50%;
+        margin-top: -200px; }
+        .zmiti-main-ui .zmiti-main-share-ui > .lt-full .zmiti-waiting-C div {
+          position: absolute;
+          left: 0;
+          top: 0; }
+        .zmiti-main-ui .zmiti-main-share-ui > .lt-full .zmiti-waiting-C .zmiti-point {
+          left: 50%;
+          margin-left: -20px;
+          top: 25%;
+          -webkit-animation: rotate 0.5s infinite linear;
+          animation: rotate 0.5s infinite linear; }
+    .zmiti-main-ui .zmiti-main-share-ui .zmiti-createimg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      -webkit-transform: translate3d(-50%, 0, 0);
+      transform: translate3d(-50%, 0, 0);
+      z-index: 102;
+      height: 70%;
+      -webkit-transition: 1.3s;
+      transition: 1.3s; }
+      .zmiti-main-ui .zmiti-main-share-ui .zmiti-createimg .zmiti-createimg1 {
+        margin-top: 8vh;
+        position: relative; }
+      .zmiti-main-ui .zmiti-main-share-ui .zmiti-createimg img {
+        width: auto;
+        height: 100%; }
+      .zmiti-main-ui .zmiti-main-share-ui .zmiti-createimg .zmiti-hotword-img {
+        position: absolute;
+        top: 340px;
+        left: 300px; }
+        .zmiti-main-ui .zmiti-main-share-ui .zmiti-createimg .zmiti-hotword-img.active {
+          top: 310px; }
+    .zmiti-main-ui .zmiti-main-share-ui .zmiti-share-tip {
+      position: absolute;
+      bottom: 70px;
+      position: absolute;
+      color: #d43620;
+      font-weight: bold;
+      right: 15%;
+      z-index: 103; }
+    .zmiti-main-ui .zmiti-main-share-ui .zmiti-main-share-btns {
+      position: absolute;
+      width: 100%;
+      bottom: 50px;
+      display: -webkit-box;
+      -webkit-box-align: center;
+      -webkit-box-pack: center;
+      -webkit-box-orient: horizontal; }
+      .zmiti-main-ui .zmiti-main-share-ui .zmiti-main-share-btns div {
+        margin: 0 10px; }
+  .zmiti-main-ui .zmiti-rank-btn {
+    position: absolute;
+    z-index: 10;
+    left: -10px;
+    bottom: 25%; }
+  .zmiti-main-ui .zmiti-active-btn {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    bottom: 25%; }
+  .zmiti-main-ui .zmiti-mask {
+    z-index: 1300; }
+  .zmiti-main-ui .zmiti-rank-ui {
+    z-index: 1002; }
+    .zmiti-main-ui .zmiti-rank-ui .zmiti-rank-title {
+      width: 300px;
+      margin: 100px auto 20px; }
+    .zmiti-main-ui .zmiti-rank-ui ul li {
+      display: inline-block;
+      width: 375px;
+      margin-top: 30px;
+      box-sizing: border-box;
+      position: relative; }
+      .zmiti-main-ui .zmiti-rank-ui ul li .zmiti-rankname {
+        position: absolute;
+        top: 12px;
+        font-size: 34px;
+        color: #f4e8a8;
+        left: 60px; }
+        .zmiti-main-ui .zmiti-rank-ui ul li .zmiti-rankname img {
+          width: 20px;
+          margin-left: 10px;
+          margin-top: 24px; }
+      .zmiti-main-ui .zmiti-rank-ui ul li .zmiti-rank-num {
+        color: #f4e8a8;
+        position: relative;
+        top: 20px; }
+      .zmiti-main-ui .zmiti-rank-ui ul li .zmiti-fire {
+        position: absolute;
+        bottom: 2px;
+        left: 130px; }
 
 @-webkit-keyframes info {
   from {

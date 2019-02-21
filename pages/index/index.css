@@ -40,8 +40,8 @@
     left: 40px; }
     .zmiti-index-main-ui .zmiti-index-logo.hide {
       opacity: 0;
-      -webkit-transition: opacity 0.4s;
-      transition: opacity 0.4s; }
+      -webkit-transition: opacity 0.4s 0.2s;
+      transition: opacity 0.4s 0.2s; }
   .zmiti-index-main-ui .zmiti-index-title {
     position: absolute;
     width: 460px;
@@ -52,10 +52,10 @@
     .zmiti-index-main-ui .zmiti-index-title.active {
       -webkit-transition: 0.5s;
       transition: 0.5s;
-      -webkit-transform-origin: left top;
-      transform-origin: left top;
-      -webkit-transform: scale(0.34) translate3d(-320px, -180px, 0);
-      transform: scale(0.34) translate3d(-320px, -180px, 0); }
+      width: 156px;
+      left: 30px;
+      top: 30px;
+      margin-left: 0; }
   .zmiti-index-main-ui .zmiti-index-remark {
     display: -webkit-box;
     -webkit-box-align: center;

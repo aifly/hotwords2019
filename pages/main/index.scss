@@ -6,6 +6,19 @@ $bgColor: #fcfff8;
 $color: #fffb88;
 
 .zmiti-main-ui {
+    
+    &.main-enter-active,
+    &.main-leave-active {
+        @include transition(.4s);
+    }
+
+
+    &.main-leave-to,
+    &.main-enter {
+        opacity: 0;
+    }
+
+
     @include transform3d;
 
     width: $viewW !important;
@@ -14,7 +27,15 @@ $color: #fffb88;
     overflow: hidden;
     background: #fff;
 
+    @at-root.zmiti-h5-title{
+        @include pos(a);
+        width: 156px;
+        left: 30px;
+        top: 30px;
+        z-index: 1012;
+    }
     &.show {
+        @include transition(.5s);
         z-index: 270;
         opacity: 1;
     }
@@ -58,6 +79,15 @@ $color: #fffb88;
             width: 400px;
             left: 50%;
             @include transform(translate3d(-50%,0,0));;
+
+            &.person-enter-active,
+            &.person-leave-active {
+                @include transition(.4s);
+            }   
+            &.person-leave-to,
+            &.person-enter {
+                opacity: 0;
+            }
         }
 
         .zmiti-discuss{
@@ -77,7 +107,14 @@ $color: #fffb88;
                 -webkit-perspective: 500px;
                 @include pos(r);
                 //@include displayBox(horizontal);
-                @include transition(.4s);
+                //@include transition(.4s);
+                
+                &.active{
+                    @include transform(translate3d(0,0,450px));
+                    opacity:0;
+                    -webkit-transition: -webkit-transform 1s .5s,opacity .5s 1s;
+                }
+
                 li{
                     width: $viewW;
                     text-align: center;
@@ -232,26 +269,97 @@ $color: #fffb88;
 
     .zmiti-scene-ui{
         z-index: 300;
-        .zmiti-back{
+        &.scene-enter-active,
+        &.scene-leave-active {
+            @include transition(1s);
+        }   
+        &.scene-leave-to,
+        &.scene-enter {
+            opacity: 0;
+        }
+        @at-root.zmiti-back{
             @include pos(a);
             left: -40px;;
             top: 40px;
             width: 230px;
         }
+
         .zmiti-scene-title{
             @include pos(a);
             width: 400px;
             left: 230px;
             z-index: 10;
+            span{
+                @include  pos(a);
+                width: 100%;
+                height: 100%;
+                top: 0;
+                color:#fff;
+                font-size:34px;
+                text-align: center;
+                line-height: 220px;
+            }
         }
 
         .zmiti-black{
             @include pos(a);
             left: 50%;
-            width: 90%;
+            width: 700px;
             top:100px;
             @include transform(translate3d(-50%,0,0));;
+
+            .zmiti-talk-C{
+                @include pos(a);
+                left:10%;
+                top: 0;
+                height: 590px;;
+                overflow-y: hidden;
+                width: 600px;
+                //overflow-x:auto;
+                margin-top:100px;
+                z-index: 100;
+                ul{
+                    padding-bottom:30px;
+                }
+                li{
+                    @include displayBox(horizontal);
+                    margin: 30px 0;
+                    -webkit-box-align: start;
+                    width: 500px;
+                    -webkit-box-pack: start;
+                    div{
+                        margin: 0 10px;
+                        
+                    }
+                    .zmiti-talk-content{
+                        background:#dbdbdb;
+                        color:#08597e;
+                        padding: 20px;
+                        box-sizing:border-box;
+                        @include br(10px);
+                        @include pos(r);
+                        &:before{
+                            content:"";
+                            width: 30px;
+                            height: 30px;
+                            @include pos(a);
+                            background:#dbdbdb;
+                            @include transform(rotate(45deg));
+                            @include br(5px);
+                            left: -10px;
+                            top: 14px;
+                        }
+                    }
+                }
+            }
             
+        }
+
+        .zmiti-photo{
+            @include pos(a);
+            bottom:200px;
+            right: 10px;
+            width: 120px;
         }
 
         .zmiti-say{
@@ -261,8 +369,220 @@ $color: #fffb88;
             margin-left: -170px;
             bottom:100px;
         }
+
+        .zmiti-input-C{
+            width: 90%;
+            margin: 140px auto;
+            @include pos(r);
+            textarea{
+                @include pos(a);
+                width:580px;
+                height: 340px;;
+                left: 50%;
+                @include transform(translate3d(-50%,0,0));
+                top: 30px;;
+                border:none;
+                outline: none;
+                color:#1082b6;
+                font-size: 30px;
+                &::-webkit-input-placeholder{
+                    color:#1082b6;
+                }
+            }         
+            .zmiti-submit{
+                text-align: center;
+                margin-top: 40px;
+                img{
+                    width: 400px;
+
+                };
+            } 
+            .zmiti-input-btns{
+                @include pos(r);
+                @include displayBox(horizontal);
+                margin-top:40px;
+                div{
+                    margin: 0 10px;
+                }
+            }
+            .zmiti-submit-success{
+                @include pos(a);
+
+                background:#fff;
+                left:50px;
+                top: 30px;
+                text-align: center;
+                width: 580px;;
+                img{
+                    width: 100px;
+                    margin: 20px 0;
+                }
+                div{
+                    width: 100%;
+                    line-height: 60px;
+                    font-size:34px;
+                    color:#1082b6;
+                }
+            }  
+        }
     }
 
+
+    .zmiti-main-share-ui{
+        z-index: 1002;
+
+        &>.lt-full{
+            background:rgba(0,0,0,.8);
+            z-index: 10022;
+
+            .zmiti-waiting-C{
+                @include pos(a);
+                left: 50%;
+                width: 230px;
+                height: 400px;
+                margin-left: -115px;
+                top: 50%;
+                margin-top: -200px;
+                div{
+                    @include pos(a);
+                    left: 0;
+                    top: 0;
+                }
+                .zmiti-point{
+                    left: 50%;
+                    margin-left: -20px;
+                    top: 25%;
+                    @include animation(rotate .5s infinite linear);
+                }
+            }
+        }
+
+        .zmiti-createimg{
+            @include pos(a);
+            top:0;
+            left: 50%;
+            @include transform(translate3d(-50%,0,0));
+            z-index: 102;
+            height:70%;
+
+            @include transition(1.3s);
+            .zmiti-createimg1{
+                margin-top: 8vh;
+                @include pos(r);
+
+                
+            }
+
+
+            img{
+                width: auto;
+                height: 100%;
+            }
+
+            .zmiti-hotword-img{
+                @include pos(a);
+                top: 340px;
+                left: 300px;
+                &.active{
+                    top:310px;
+                }
+            }
+        }
+
+        .zmiti-share-tip{
+            @include pos(a);
+            bottom:70px;
+            @include pos(a);
+            color:#d43620;
+            font-weight: bold;
+            right: 15%;
+            z-index: 103;
+        }
+
+        .zmiti-main-share-btns{
+            @include pos(a);
+            width:100%;
+
+            bottom:50px;
+
+            @include displayBox(horizontal);
+            div{
+                margin: 0 10px;
+            }
+        }
+    }
+
+    .zmiti-rank-btn{
+        @include pos(a);
+        z-index: 10;
+        left: -10px;
+        bottom:25%;
+    }
+
+    .zmiti-active-btn{
+        @include pos(a);
+        z-index: 10;
+        right:0;
+        bottom:25%;
+    }
+
+    .zmiti-mask{
+        z-index: 1300;
+    }
+
+    .zmiti-rank-ui{
+        z-index: 1002;
+        .zmiti-rank-title{
+            width: 300px;
+            margin: 100px auto 20px; 
+        }
+        @at-root.zmiti-back{
+
+        }
+        ul{
+            li{
+                display:inline-block;
+                width: 375px;
+                margin-top: 30px;
+                box-sizing:border-box;
+                @include pos(r);
+                .zmiti-rankname{
+                    @include pos(a);
+                    top:12px;;
+                    font-size:34px;
+                    color:#f4e8a8;
+                    left: 60px;
+                    img{
+                        width: 20px;
+                        margin-left: 10px;
+                        margin-top: 24px;
+                    }
+                }
+                .zmiti-rank-num{
+                    color:#f4e8a8;
+                    @include pos(r);
+                    top: 20px;
+                }
+                .zmiti-fire{
+                    @include pos(a);
+                    bottom: 2px;
+                    left: 130px;
+                }
+
+            }
+        }
+    }
+
+}
+
+@media all and(max-height:1110px) {
+    .zmiti-main-ui{
+        .zmiti-main-share-ui{
+            .zmiti-createimg{
+                
+            }
+        }
+    }
 }
 
 @-webkit-keyframes info {
