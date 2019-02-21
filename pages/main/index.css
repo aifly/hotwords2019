@@ -72,6 +72,13 @@
     .zmiti-main-ui .zmiti-modal-C.modal-leave-active {
       -webkit-transition: 0.4s;
       transition: 0.4s; }
+    .zmiti-main-ui .zmiti-modal-C .zmiti-tip {
+      background: rgba(0, 0, 0, 0.6);
+      display: -webkit-box;
+      -webkit-box-align: center;
+      -webkit-box-pack: center;
+      -webkit-box-orient: horizontal;
+      z-index: 1029; }
     .zmiti-main-ui .zmiti-modal-C.modal-leave-to, .zmiti-main-ui .zmiti-modal-C.modal-enter {
       opacity: 0; }
     .zmiti-main-ui .zmiti-modal-C .zmiti-person {

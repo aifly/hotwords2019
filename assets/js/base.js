@@ -7,6 +7,8 @@
   index:'./assets/images/index.png',
   point:'./assets/images/point.png',
   waiting:'./assets/images/waiting.png',
+  tip:'./assets/images/tip.png',
+
 
   entry:'./assets/images/entry.png',
   title:'./assets/images/title.png',

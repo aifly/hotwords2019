@@ -10,6 +10,11 @@
 						<div class="zmiti-h5-title">
 							<img :src="imgs.title" alt="">
 						</div>
+						<div class="lt-full zmiti-tip" v-show='showTip' @touchstart='showTip = false'>
+							<div>
+								<img :src="imgs.tip" alt="">
+							</div>
+						</div>
 						<div class='zmiti-modal-list' v-swipeleft='swipeLeft' v-swiperight='swipeRight'>
 							<ul :class='{"active":openDoor}'>
 								<li :style='{height:viewH+"px"}' :class="hw.className" class='lt-full' v-for='(hw,i) in hotWords' :key="i">
@@ -214,6 +219,8 @@
 				showMaskPage:false,
 				showSharePage:false,
 				msg:'',
+
+				showTip:true,
 				showScene:false,
 				show:false,
 				isSuccess:false,//是否提交成功了。
