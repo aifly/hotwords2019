@@ -1,6 +1,6 @@
 <template>
 	<transition name='main'>
-		<div class='zmiti-main-ui lt-full' :class="{'show':show}" :style="{background:'url('+imgs.mainBg+') no-repeat center bottom',backgroundSize:'cover'}" >
+		<div class='zmiti-main-ui lt-full' ref='scene' :class="{'show':show}" :style="{background:'url('+imgs.mainBg+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}" >
 			<div class="lt-full zmiti-main-road">
 				<div class='zmiti-road'>
 					<img :src="imgs.road" alt="">
@@ -58,7 +58,7 @@
 			 	</transition>
 
 			 	<transition name='scene'>
-			 		<div v-if='showScene' class="zmiti-scene-ui lt-full" :style="{background:'url('+imgs.scene+') no-repeat center bottom',backgroundSize:'cover'}">
+			 		<div v-if='showScene'  class="zmiti-scene-ui lt-full" :style="{background:'url('+sceneBg+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}">
 			 			<template v-if='!showInput'>
 					 		<div class="zmiti-back" v-tap='[backToMain]'>
 					 			<img :src="imgs.back" alt="">
@@ -100,13 +100,17 @@
 					 		<div class='zmiti-input-C'>
 					 			<div class="zmiti-input">
 					 				<img :src="imgs.input" alt="">
-					 				<textarea ref='input' placeholder="请输入您要留言的内容~~" v-model='msg'></textarea>
+					 				<textarea @blur='blur' @focus='focus' ref='input' placeholder="请输入您要留言的内容~~" v-model='msg'></textarea>
 					 			</div>
 					 			<div class="zmiti-submit-success" v-show='isSuccess'>
 					 				<img :src="imgs.right" alt="">
 					 				<div>您参与的{{hotWords[currentIndex].name.replace(/<[^>]*>|<\/[^>]*>/gm,'')}}热词讨论的留言，</div>
 					 				<div>已经提交成功进入评审阶段，</div>
 					 				<div>敬请关注。</div>
+					 			</div>
+					 			<div class='zmiti-mobile' v-if='!isSuccess'>
+					 				<input type="text" @blur='blur' @focus='focus' placeholder="请录入手机号，有奖品哦！
+					 				" v-model='mobile' ref='mobile'>
 					 			</div>
 					 			<div v-if='isSuccess' class="zmiti-input-btns">
 					 				<div v-tap='[backToMainBySubmit]'>
@@ -127,7 +131,7 @@
 			 	</transition>
 				
 				<transition name='share'>
-					<div class="zmiti-main-share-ui lt-full" :style="{background:'url('+imgs.loading+') no-repeat center bottom',backgroundSize:'cover'}" v-if='showSharePage'>
+					<div class="zmiti-main-share-ui lt-full" :style="{background:'url('+imgs.loading+') no-repeat center bottom',backgroundSize:'cover'}" v-show='showSharePage'>
 						<div class="lt-full" v-if='!createImg'>
 							
 							<div class="zmiti-waiting-C">
@@ -175,7 +179,7 @@
 								<img :src="imgs.rankTitle" alt="">
 							</div>
 							<ul>
-								<li v-for='(hw,i) in hotWords ' :key='i'>
+								<li v-for='(hw,i) in rankingList ' :key='i'>
 									<img :src="imgs.rankNum" alt="">
 									<span class='zmiti-rankname'>{{hw.name.replace(/<[^>]*>|<\/[^>]*>/gm,'')}}
 										<img :src="imgs.fire" alt="">
@@ -196,6 +200,8 @@
 			<div class="zmiti-daoyu lt-full" v-if='false'>
 				<img :src="imgs.daoyu" alt="">
 			</div>
+
+			<Toast :errorMsg='errorMsg'></Toast>
 		</div>
 
 	</transition>
@@ -206,7 +212,8 @@
 	
 	import zmitiUtil from '../lib/util';
 	import IScroll from 'iscroll';
-
+	import Toast from '../toast/toast';
+	import '../lib/html2canvas';
 	export default {
 		props: ['obserable', 'pv', 'randomPv', 'nickname', 'headimgurl'],
 	
@@ -214,32 +221,39 @@
 	
 		data() {
 			return {
+				errorMsg:'',
+
 				showRank:false,	
 				createImg:'',
 				showMaskPage:false,
 				showSharePage:false,
 				msg:'',
-
 				showTip:true,
 				showScene:false,
 				show:false,
 				isSuccess:false,//是否提交成功了。
+				rankingList:[],
 				imgs:window.imgs,
 				secretKey: "e9469538b0623783f38c585821459454",
-                host: "https://xlive.xinhuaapp.com", //测试域名：https://testxlive.xinhuaapp.com
+                host:window.config.host, 
 				viewW:Math.min( window.innerWidth,750),
 				viewH: window.innerHeight,
 				currentIndex:0,
 				person:window.imgs.person,
 				showInput:false,
+				mobile:'',
 				openDoor:false,
+				sceneBg:window.imgs.scene ,
 				scaleCreateImg:false,
 				hotWords:window.config.hotWords
 			}
 		},
 	
-		components: {},
+		components: {
+			Toast
+		},
 		watch:{
+
 			showRank(val){
 				if(val){
 					if(this.rankScroll){
@@ -271,6 +285,7 @@
 			backToMain(){
 				this.showScene = false;
 				this.showRank = false;
+				this.isSuccess = false;
 			},
 
 			swipeLeft(){
@@ -404,6 +419,20 @@
 				},3000);
 				var  s = this;
 
+				axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
+                    "secretKey": s.secretKey, // 请求秘钥
+                    "nm": "xhs-hotwords2019-" + (s.currentIndex + 1) // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+                }).then(function(data) {
+                    var dt = data.data;
+                    if (typeof dt === 'string') {
+                        dt = JSON.parse(dt);
+                    }
+                    console.log(dt,'like');
+
+                    if (dt.rc === 0) {
+                    }
+                });
+
 				/*
 				
 				*/
@@ -421,7 +450,7 @@
 						s.hotWords[s.currentIndex].talkList = dt.data.lst;
 						//console.log(s.hotWords[s.currentIndex].talkList)
 					}
-				})
+				});
 
 			},
 			say(){//我要发言
@@ -429,6 +458,7 @@
 			},
 			backToMsg(){
 				this.showInput = false;
+				this.isSuccess = false;
 				setTimeout(()=>{
 					setTimeout(()=>{
 						this.scroll = new IScroll(this.$refs['talk'],{
@@ -448,6 +478,52 @@
 				var seconds = D.getSeconds();
 
 				this.$refs['input'].blur();
+				this.$refs['mobile'].blur();
+
+				if(!(/^1[34578]\d{9}$/.test(this.mobile))){ 
+					this.errorMsg = '手机号格式不正确';
+					setTimeout(() => {
+						this.errorMsg = '';
+					}, 2000);
+					return;
+				}
+
+				if(this.msg.length<=0){
+					this.errorMsg = '留言不能为空';
+					setTimeout(() => {
+						this.errorMsg = '';
+					}, 2000);
+					return;
+				}
+				var s = this;
+				axios.post(this.host+'/xhs-security-activity/activity/user/saveUser',{
+					"secretKey": s.secretKey, // 请求秘钥
+					"nm": "hotwords", // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+					uname:s.nickname||"新华社网友",
+					unickName:s.nickname||"新华社网友",
+					uphone:s.mobile
+				}).then((data)=>{
+					
+					if(typeof data.data === 'string'){
+						data = JSON.parse(data.data);
+					}
+					else {
+						data = data.data;
+					}
+					if(data.rc === 0){
+						s.successMsg = '提交成功';
+
+					}else{
+						s.errorMsg =  data.msg;
+						s.mobile = '';
+					}
+					setTimeout(() => {
+						s.successMsg = '';
+						s.errorMsg = '';
+						s.showPrize = false;
+					}, 2000);
+ 
+				})
 
 				axios.post(this.host+"/xhs-security-activity/activity/comment/saveComment",{
 					"secretKey": s.secretKey, // 请求秘钥
@@ -471,20 +547,17 @@
 				var s = this;
 
 				var {obserable} = this;
-
 				//document.title = '开始截图....'
+				var ref = 'page';
+				var dom = this.$refs[ref];
 
 				setTimeout(()=>{
-					//this.showLoading = true;
-					var ref = 'page';
-					var dom = this.$refs[ref];
 					html2canvas(dom,{
 						useCORS: true,
 						onrendered: function(canvas) {
 					        var src = canvas.toDataURL();
 							//s.mergeImg = '';
 							s.createImg = src;
-
 							setTimeout(()=>{
 								s.scaleCreateImg = true;
 							},200)
@@ -493,11 +566,21 @@
 					      width: dom.clientWidth,
 					      height:dom.clientHeight
 					})
-				},500);
+				},300);
 			},
 			photo(){
 				this.showSharePage = true;
 				this.html2img();
+			},
+			blur(){
+				this.$refs['scene'].style.position = 'fixed';
+				this.$refs['scene'].style.top = 0;
+
+
+			},
+			focus(){
+				this.$refs['scene'].style.position = 'relative';
+
 			}
 		},
 	
@@ -508,32 +591,36 @@
 				this.show = data.show;
 				
 			});
-
-			
-			
-
 			var  s = this;
-			this.hotWords.forEach((item,i)=>{
-				return (function(a){
-					axios.post(s.host+"/xhs-security-activity/activity/comment/getComment",{
-						"secretKey": s.secretKey, // 请求秘钥
-						"nm": "xhs-hotwords2019-"+(a+1), // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
-						pn:1,
-						ps:1000
-					}).then(data=>{
 
-						var dt = data.data;
-						if(typeof dt === 'string'){
-							dt = JSON.parse(dt);
-						}
-						if(dt.rc === 0){
-							s.hotWords[a].num = dt.data.num;
-							s.hotWords = s.hotWords.concat([]);
-						}
-					})
-				})(i);
-			});
-			
+			axios.post(s.host+"/xhs-security-activity/activity/num/getHotWords",{
+				"secretKey": s.secretKey, // 请求秘钥
+				///"nm": "hotwords", // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+			}).then(data=>{
+
+				var dt = data.data;
+				if(typeof dt === 'string'){
+					dt = JSON.parse(dt);
+				}
+
+				if(dt.rc === 0){
+					var hotWords = dt.data.hotWords;
+					var arr = [];
+					hotWords.forEach((item,i)=>{
+						var index = item.nm.split('-').pop() - 1;
+						this.hotWords.forEach((hw,k)=>{
+							if(k === index){
+								var obj = {
+									num:item.num,
+									name:hw.name,
+								}
+								this.rankingList.push(obj);
+							}
+						})
+
+					});
+				}
+			})
 		}
 	
 	}

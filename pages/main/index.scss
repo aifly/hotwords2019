@@ -277,6 +277,7 @@ $color: #fffb88;
         &.scene-leave-active {
             @include transition(1s);
         }   
+        
         &.scene-leave-to,
         &.scene-enter {
             opacity: 0;
@@ -373,7 +374,9 @@ $color: #fffb88;
             margin-left: -170px;
             bottom:100px;
         }
-
+        .fill{
+            height: 140px;
+        }
         .zmiti-input-C{
             width: 90%;
             margin: 140px auto;
@@ -398,7 +401,6 @@ $color: #fffb88;
                 margin-top: 40px;
                 img{
                     width: 400px;
-
                 };
             } 
             .zmiti-input-btns{
@@ -407,6 +409,33 @@ $color: #fffb88;
                 margin-top:40px;
                 div{
                     margin: 0 10px;
+                }
+            }
+            .zmiti-mobile{
+                width: 96%;
+
+                @include br(10px);
+                height: 70px;
+                background:#6f3c38;;
+                margin: 20px auto;
+
+                @include pos(r);
+                input{
+                    @include pos(a);
+
+                    width: 100%;
+                    height: 70px;
+                    line-height: 70px;
+                    background:transparent;
+                    outline: none;
+                    border:none;
+                    padding: 0;
+                    color:#f4e8a8;
+                    font-size: 30px;
+                    text-indent: 1em;
+                    &::-webkit-input-placeholder{
+                        color:#f4e8a8;
+                    }
                 }
             }
             .zmiti-submit-success{

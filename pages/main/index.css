@@ -308,6 +308,8 @@
       left: 50%;
       margin-left: -170px;
       bottom: 100px; }
+    .zmiti-main-ui .zmiti-scene-ui .fill {
+      height: 140px; }
     .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C {
       width: 90%;
       margin: 140px auto;
@@ -340,6 +342,27 @@
         margin-top: 40px; }
         .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-input-btns div {
           margin: 0 10px; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile {
+        width: 96%;
+        border-radius: 10px;
+        height: 70px;
+        background: #6f3c38;
+        margin: 20px auto;
+        position: relative; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile input {
+          position: absolute;
+          width: 100%;
+          height: 70px;
+          line-height: 70px;
+          background: transparent;
+          outline: none;
+          border: none;
+          padding: 0;
+          color: #f4e8a8;
+          font-size: 30px;
+          text-indent: 1em; }
+          .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile input::-webkit-input-placeholder {
+            color: #f4e8a8; }
       .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit-success {
         position: absolute;
         background: #fff;

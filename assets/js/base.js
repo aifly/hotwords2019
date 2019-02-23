@@ -11,7 +11,7 @@
 
 
   entry:'./assets/images/entry.png',
-  title:'./assets/images/title.png',
+  title:'./assets/images/title2.png',
   remark:'./assets/images/remark.png',
   door:'./assets/images/door.png',
   person:'./assets/images/person.png',
@@ -89,6 +89,7 @@ for (var attr in imgs) {
    indexvideo: './assets/video/index3.mp4',
    indexvideo1: './assets/video/index3.mp4',
    baseUrl: "https://xlive.xinhuaapp.com",
+   host:"https://xlive.xinhuaapp.com", //正式域名：https://testxlive.xinhuaapp.com
    secretKey: "e9469538b0623783f38c585821459454",
    hotWords:[
       {
@@ -96,15 +97,6 @@ for (var attr in imgs) {
 
         talkList:[
           
-          
-          
-          
-          
-          
-          
-
-
-
         ]
       },
       {
@@ -360,7 +352,7 @@ for (var attr in imgs) {
  })
 var musics = {
 	music: {
-		src: './assets/music/bg.mp3',
+		src: './assets/music/bg1.mp3',
 		autoplay: true,
 		name: 'bg2',
 		loop: true

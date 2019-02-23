@@ -32,10 +32,10 @@
 
 </template>
 
+
 <script>
 	import './index.css';
 	import zmitiUtil from '../lib/util';
-	import '../lib/html2canvas.js';
 	export default {
 		props:['obserable'],
 		name:"zmiti-index-page",
@@ -47,7 +47,7 @@
 				showRemarkPage:false,
 				imgs:window.imgs,
 				secretKey: "e9469538b0623783f38c585821459454",
-                host: "https://xlive.xinhuaapp.com", //测试域名：https://testxlive.xinhuaapp.com
+                host: window.config.host,
 				viewH:window.innerHeight,
 				viewW:window.innerWidth,
 			}
@@ -84,7 +84,7 @@
 				var s = this;
 				axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
 						"secretKey": s.secretKey, // 请求秘钥
-						"nm": "hotwords2019" // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+						"nm": "hotwords" // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
 					}).then(function (data) {
 						var dt = data.data;
 						if (typeof dt === 'string') {

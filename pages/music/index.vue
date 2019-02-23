@@ -17,7 +17,6 @@
 		audios.push(musics[music])
 	}
 
-	console.log(audios);
 	export default {
 		props:['obserable'],
 		name:'zmitiindex',
@@ -41,7 +40,7 @@
 
 			},
 			playAudioMuted(){//静音播放
-
+				return;
 				this.audios.forEach((audio,i)=>{
 					if(i>0){
 						if(audio.autoplay){
@@ -58,7 +57,6 @@
 			
 			
 			var {obserable} = this;
-			console.log(this.$refs)
 			var audio = this.$refs['music'][0];
 
 			var len = audio;
@@ -71,7 +69,7 @@
 			});
 
 			len && audio.play();
-			audio.volume = .1;
+			//audio.volume = .1;
 
 			this.playAudioMuted();
 
@@ -111,7 +109,7 @@
 			var s = this;
 			document.addEventListener("WeixinJSBridgeReady", function() {
 				WeixinJSBridge.invoke('getNetworkType', {}, function(e) {
-					audio&&(audio.volume = .1);
+					//audio&&(audio.volume = .1);
 					len && audio.play();
 					s.playAudioMuted();
 				});
@@ -124,12 +122,12 @@
 				document.removeEventListener("YixinJSBridgeReady", play);
 				s.playAudioMuted();
 				len && audio.play();
-				audio&&(audio.volume = .1);
+				//audio&&(audio.volume = .1);
 				
 			};
 
 			if (window.WeixinJSBridge) {
-				audio&&(audio.volume = .1);
+				//audio&&(audio.volume = .1);
 				len && audio.play();
 				s.playAudioMuted();
 			}
@@ -145,8 +143,6 @@
 			}
 
 			obserable.on('toggleBgMusic', (data) => {
-
-
 
 				var audio = this.$refs['music'][0];
 				audio[data ? 'play' : 'pause']();
