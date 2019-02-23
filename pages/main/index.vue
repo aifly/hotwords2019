@@ -510,12 +510,12 @@
 					else {
 						data = data.data;
 					}
+					s.successMsg = '提交成功';
+					s.mobile = '';
 					if(data.rc === 0){
-						s.successMsg = '提交成功';
 
 					}else{
-						s.errorMsg =  data.msg;
-						s.mobile = '';
+						///s.errorMsg =  data.msg;
 					}
 					setTimeout(() => {
 						s.successMsg = '';
