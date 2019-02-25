@@ -103,127 +103,130 @@
     .zmiti-main-ui .zmiti-modal-C .flash {
       -webkit-animation: flash 1s infinite alternate;
       animation: flash 1s infinite alternate; }
-    .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul {
-      perspective: 500px;
-      -webkit-perspective: 500px;
-      position: relative; }
-      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul.active {
-        -webkit-transform: translate3d(0, 0, 450px);
-        transform: translate3d(0, 0, 450px);
-        opacity: 0;
-        -webkit-transition: -webkit-transform 1s .5s,opacity .5s 1s; }
-      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li {
-        width: 750px;
-        text-align: center;
-        position: absolute;
-        -webkit-transform: rotateY(0) translate3d(0, 0, 100px);
-        transform: rotateY(0) translate3d(0, 0, 100px); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li > img {
-          height: 600px;
-          width: auto;
+    .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list {
+      height: 100vh; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul {
+        perspective: 500px;
+        -webkit-perspective: 500px;
+        position: relative; }
+        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul.active {
+          -webkit-transform: translate3d(0, 0, 450px);
+          transform: translate3d(0, 0, 450px);
+          opacity: 0;
+          -webkit-transition: -webkit-transform 1s .5s,opacity .5s 1s; }
+        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li {
+          width: 750px;
+          text-align: center;
           position: absolute;
-          bottom: 320px;
-          left: 50%;
-          -webkit-transform: translate3d(-50%, 0, 0);
-          transform: translate3d(-50%, 0, 0); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 {
-          position: absolute;
-          color: #fff;
-          left: 50%;
-          -webkit-transform: translate3d(-50%, 0, 0);
-          transform: translate3d(-50%, 0, 0);
-          bottom: 970px;
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          padding: 10px;
-          background: #1082b6; }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 .zmiti-down {
-            width: 20px; }
-            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 .zmiti-down img {
-              margin-top: 15px;
-              width: 40px; }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1:before {
-            content: "";
+          -webkit-transform: rotateY(0) translate3d(0, 0, 100px);
+          transform: rotateY(0) translate3d(0, 0, 100px); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li > img {
+            height: 600px;
+            width: auto;
             position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            border: 4px dashed #1082b6;
-            border-radius: 50%;
-            box-sizing: border-box;
-            -webkit-transform: scale(1.2);
-            transform: scale(1.2); }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.active {
-            background: #eb333a; }
-            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.active:before {
-              border: 4px dashed #eb333a; }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.shot {
-            line-height: 80px; }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.long {
-            font-size: 26px; }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title {
-          width: 300px;
-          position: absolute;
-          left: 50%;
-          margin-left: -150px;
-          border: 1px solid red;
-          bottom: 875px;
-          z-index: 100; }
-          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title span {
-            height: 100%;
-            line-height: 64px;
-            color: #3a2a08;
+            bottom: 320px;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 {
             position: absolute;
+            color: #fff;
+            left: 50%;
             text-align: center;
-            width: 100%; }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.left {
-          opacity: .7;
-          -webkit-transform: translate3d(-375px, 0, 0px) rotateY(0deg) scale(0.7);
-          transform: translate3d(-375px, 0, 0px) rotateY(0deg) scale(0.7); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.transition {
-          -webkit-transition: 0.4s;
-          transition: 0.4s; }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.left1 {
-          opacity: 0;
-          -webkit-transform: translate3d(-750px, 0, 0px) rotateY(0deg);
-          transform: translate3d(-750px, 0, 0px) rotateY(0deg); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.right {
-          opacity: .7;
-          -webkit-transform: translate3d(375px, 0, 0px) rotateY(0deg) scale(0.7);
-          transform: translate3d(375px, 0, 0px) rotateY(0deg) scale(0.7); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.right1 {
-          opacity: 0;
-          -webkit-transform: translate3d(750px, 0, 0px) rotateY(-90deg);
-          transform: translate3d(750px, 0, 0px) rotateY(-90deg); }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.active {
-          -webkit-transform: rotateY(0) translate3d(0, 0, 0px);
-          transform: rotateY(0) translate3d(0, 0, 0px);
-          z-index: 100; }
-    .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-ar {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-right: none;
-      border-top: none;
-      left: 140px;
-      bottom: 600px; }
-    .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-ar-r {
-      left: auto;
-      right: 140px; }
-    .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip {
-      position: absolute;
-      top: 860px;
-      width: 360px;
-      left: 50%;
-      margin-left: -180px;
-      text-align: center; }
-      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip .zmiti-create-wish {
-        width: 360px; }
-        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip .zmiti-create-wish img {
-          width: 400px;
-          margin-left: -20px; }
+            -webkit-transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0);
+            bottom: 970px;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            padding: 10px;
+            background: #1082b6; }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 .zmiti-down {
+              width: 20px; }
+              .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1 .zmiti-down img {
+                margin-top: 15px;
+                width: 40px; }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1:before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              left: 0;
+              top: 0;
+              border: 4px dashed #1082b6;
+              border-radius: 50%;
+              box-sizing: border-box;
+              -webkit-transform: scale(1.2);
+              transform: scale(1.2); }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.active {
+              background: #eb333a; }
+              .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.active:before {
+                border: 4px dashed #eb333a; }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.shot {
+              line-height: 80px; }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title1.long {
+              font-size: 26px; }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title {
+            width: 300px;
+            position: absolute;
+            left: 50%;
+            margin-left: -150px;
+            border: 1px solid red;
+            bottom: 875px;
+            z-index: 100; }
+            .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li .zmiti-title span {
+              height: 100%;
+              line-height: 64px;
+              color: #3a2a08;
+              position: absolute;
+              text-align: center;
+              width: 100%; }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.left {
+            opacity: .7;
+            -webkit-transform: translate3d(-375px, 0, 0px) rotateY(0deg) scale(0.7);
+            transform: translate3d(-375px, 0, 0px) rotateY(0deg) scale(0.7); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.transition {
+            -webkit-transition: 0.4s;
+            transition: 0.4s; }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.left1 {
+            opacity: 0;
+            -webkit-transform: translate3d(-750px, 0, 0px) rotateY(0deg);
+            transform: translate3d(-750px, 0, 0px) rotateY(0deg); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.right {
+            opacity: .7;
+            -webkit-transform: translate3d(375px, 0, 0px) rotateY(0deg) scale(0.7);
+            transform: translate3d(375px, 0, 0px) rotateY(0deg) scale(0.7); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.right1 {
+            opacity: 0;
+            -webkit-transform: translate3d(750px, 0, 0px) rotateY(-90deg);
+            transform: translate3d(750px, 0, 0px) rotateY(-90deg); }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list ul li.active {
+            -webkit-transform: rotateY(0) translate3d(0, 0, 0px);
+            transform: rotateY(0) translate3d(0, 0, 0px);
+            z-index: 100; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-ar {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-right: none;
+        border-top: none;
+        left: 140px;
+        bottom: 600px; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-ar-r {
+        left: auto;
+        right: 140px; }
+      .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip {
+        position: absolute;
+        top: 860px;
+        width: 360px;
+        left: 50%;
+        margin-left: -180px;
+        text-align: center; }
+        .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip .zmiti-create-wish {
+          width: 360px; }
+          .zmiti-main-ui .zmiti-modal-C .zmiti-modal-list .zmiti-tip .zmiti-create-wish img {
+            width: 400px;
+            margin-left: -20px; }
   .zmiti-main-ui .zmiti-scene-ui {
     z-index: 300; }
     .zmiti-main-ui .zmiti-scene-ui.scene-enter-active, .zmiti-main-ui .zmiti-scene-ui.scene-leave-active {
@@ -310,10 +313,31 @@
       bottom: 100px; }
     .zmiti-main-ui .zmiti-scene-ui .fill {
       height: 140px; }
+    .zmiti-main-ui .zmiti-scene-ui .zmiti-submit {
+      text-align: center;
+      position: absolute;
+      width: 350px;
+      top: 700px;
+      left: 50%;
+      z-index: 10020;
+      -webkit-transform: translate3d(-50%, 0, 1px);
+      transform: translate3d(-50%, 0, 1px);
+      z-index: 100;
+      border: 1px solid transparent;
+      padding-bottom: 100px; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-submit.scale {
+        -webkit-transform: translate3d(-50%, 0, 1px) scale(0.95);
+        transform: translate3d(-50%, 0, 1px) scale(0.95); }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-submit img {
+        border: 1px solid transparent; }
     .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C {
       width: 90%;
       margin: 140px auto;
       position: relative; }
+      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C button {
+        position: absolute;
+        top: 0;
+        font-size: 40px; }
       .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C textarea {
         position: absolute;
         width: 580px;
@@ -328,11 +352,6 @@
         font-size: 30px; }
         .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C textarea::-webkit-input-placeholder {
           color: #1082b6; }
-      .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit {
-        text-align: center;
-        margin-top: 40px; }
-        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit img {
-          width: 400px; }
       .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-input-btns {
         position: relative;
         display: -webkit-box;
@@ -343,26 +362,27 @@
         .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-input-btns div {
           margin: 0 10px; }
       .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile {
-        width: 96%;
+        position: relative;
+        width: 86%;
         border-radius: 10px;
         height: 70px;
         background: #6f3c38;
-        margin: 20px auto;
-        position: relative; }
-        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile input {
-          position: absolute;
-          width: 100%;
-          height: 70px;
-          line-height: 70px;
-          background: transparent;
-          outline: none;
-          border: none;
-          padding: 0;
-          color: #f4e8a8;
-          font-size: 30px;
-          text-indent: 1em; }
-          .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile input::-webkit-input-placeholder {
-            color: #f4e8a8; }
+        margin: 30px auto;
+        position: fixed;
+        left: 7%;
+        top: 540px;
+        height: 60px;
+        line-height: 60px;
+        outline: none;
+        display: block;
+        border: none;
+        border: 1px solid transparent;
+        padding: 10px 0;
+        color: #f4e8a8;
+        font-size: 30px;
+        text-indent: 1em; }
+        .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-mobile::-webkit-input-placeholder {
+          color: #f4e8a8; }
       .zmiti-main-ui .zmiti-scene-ui .zmiti-input-C .zmiti-submit-success {
         position: absolute;
         background: #fff;

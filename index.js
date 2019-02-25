@@ -53,14 +53,14 @@ new Vue({
 		<Main :pv='pv' :nickname='nickname' :headimgurl='headimgurl'  v-if='show && !isShare'  :obserable='obserable'></Main>
 		<Upload :pv='pv' :nickname='nickname' :headimgurl='headimgurl'   v-if='show && !isShare'  :obserable='obserable'></Upload>
 		<Loading v-if='!show' :width='width' :obserable='obserable'></Loading>
+		<Music :obserable='obserable'></Music>
 		*/
 		template: `<div id='app1'>
-		<Music :obserable='obserable'></Music>
 		<Loading :width='width' :obserable='obserable'></Loading>
 		<Index :pv='pv' :nickname='nickname' :headimgurl='headimgurl'   v-if='show && !isShare'  :obserable='obserable'></Index>
 		<Main :width='width' :obserable='obserable'></Main>
 	</div>`,
-	methods: {
+	methods: {	
 
 		loading: function(arr, fn, fnEnd) {
 			var len = arr.length;

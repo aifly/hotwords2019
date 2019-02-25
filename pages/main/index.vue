@@ -16,7 +16,7 @@
 							</div>
 						</div>
 						<div class='zmiti-modal-list' v-swipeleft='swipeLeft' v-swiperight='swipeRight'>
-							<ul :class='{"active":openDoor}'>
+							<ul :class="{'active':openDoor}">
 								<li :style='{height:viewH+"px"}' :class="hw.className" class='lt-full' v-for='(hw,i) in hotWords' :key="i">
 									<div class="zmiti-title1" :class="{'active':(hw.className||'').indexOf('active')>-1,'shot':hw.name.length<=2,'long':hw.name.length>=5}" >
 										<span v-html='hw.name'></span>
@@ -58,11 +58,13 @@
 			 	</transition>
 
 			 	<transition name='scene'>
-			 		<div v-if='showScene'  class="zmiti-scene-ui lt-full" :style="{background:'url('+sceneBg+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}">
+			 		<div v-if='showScene' ref='click'  class="zmiti-scene-ui lt-full" :style="{background:'url('+sceneBg+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}">
 			 			<template v-if='!showInput'>
 					 		<div class="zmiti-back" v-tap='[backToMain]'>
 					 			<img :src="imgs.back" alt="">
 					 		</div>
+
+
 
 					 		<div class="zmiti-scene-title">
 					 			<img :src="imgs.sceneTitle" alt="">
@@ -72,7 +74,7 @@
 					 		<div class="zmiti-black">
 					 			<img :src="imgs.black" alt="">
 					 			<div class="zmiti-talk-C" ref='talk'>
-					 				<ul>
+					 				<ul :class='{"active":openDoor}'>
 					 					<li v-for='(talk,i) in hotWords[currentIndex].talkList'>
 					 						<div>
 					 							<img :src="imgs.user1" alt="">
@@ -97,8 +99,9 @@
 			 				<div class="zmiti-back" v-tap='[backToMsg]'>
 					 			<img :src="imgs.back1" alt="">
 					 		</div>
-					 		<div class='zmiti-input-C'>
-					 			<div class="zmiti-input">
+					 		<div class='zmiti-input-C' :style="{height:viewH+'px'}">
+					 			<input type="text" style="width:0;height:0;position:absolute;opacity:0" ref='button' @focus='focus1'>
+					 			<div class="zmiti-input" >
 					 				<img :src="imgs.input" alt="">
 					 				<textarea @blur='blur' @focus='focus' ref='input' placeholder="请输入您要留言的内容~~" v-model='msg'></textarea>
 					 			</div>
@@ -108,10 +111,11 @@
 					 				<div>已经提交成功进入评审阶段，</div>
 					 				<div>敬请关注。</div>
 					 			</div>
-					 			<div class='zmiti-mobile' v-if='!isSuccess'>
-					 				<input type="text" @blur='blur' @focus='focus' placeholder="请录入手机号，有奖品哦！
+					 			<!-- <div   @touchstart='textareaAction' >
+					 				
+					 			</div> -->
+					 			<input type="text" @blur='blur1' class='zmiti-mobile' v-if='!isSuccess' @focus='focus' placeholder="请录入手机号，有纪念品哦！
 					 				" v-model='mobile' ref='mobile'>
-					 			</div>
 					 			<div v-if='isSuccess' class="zmiti-input-btns">
 					 				<div v-tap='[backToMainBySubmit]'>
 					 					<img :src="imgs.rechoose" alt="">
@@ -121,10 +125,11 @@
 					 				</div>
 
 					 			</div>
-					 			<div class="zmiti-submit" v-else v-tap='[submit]'>
-					 				<img :src="imgs.submit" alt="">
-					 			</div>
+
 					 		</div>
+				 			<div class="zmiti-submit" :class="{'scale':scaleSubmit}" @touchstart='scaleSubmit=  true' @touchend='scaleSubmit = false' v-if='!isSuccess '  v-tap='[submit]'>
+				 				<img :src="imgs.submit" alt="" >
+				 			</div>
 			 			</template>
 
 				 	</div>
@@ -152,8 +157,8 @@
 								<div class='zmiti-share-tip' v-if='scaleCreateImg'>长按保存图片</div>
 							</div>
 							<div v-else ref='page'>
-								<img :src="imgs[isSuccess?'certificate2':'certificate1']" alt="">
-								<div class='zmiti-hotword-img' :class="{'active':isSuccess}">
+								<img :src="imgs[isSuccess?'certificate1':'certificate1']" alt="">
+								<div class='zmiti-hotword-img' :class="{'':isSuccess}">
 									<img :src="hotWords[currentIndex].img" alt="">
 								</div>
 							</div>
@@ -169,11 +174,11 @@
 					</div>
 				</transition>
 
-				<div class="lt-full zmiti-rank-ui"  v-if='showRank'   :style="{background:'url('+imgs.loading+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}">
+				<div class="lt-full zmiti-rank-ui"  v-show='showRank'   :style="{background:'url('+imgs.loading+') no-repeat center bottom',backgroundSize:'cover',height:viewH+'px'}">
 					<div class='zmiti-back' v-tap='[backToMain]' style="z-index:1000">
 						<img :src="imgs.back1" alt="">
 					</div>
-					<div class="lt-full" ref='rank'>
+					<div class="lt-full" ref='rank' :style="{height:viewH-10+'px',overflow:'hidden'}">
 						<div style="padding-bottom:130px;">
 							<div class='zmiti-rank-title'>
 								<img :src="imgs.rankTitle" alt="">
@@ -222,10 +227,12 @@
 		data() {
 			return {
 				errorMsg:'',
-
-				showRank:false,	
+				isAndroid :navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1,
+				showRank:false,
+				scaleSubmit:false,	
 				createImg:'',
 				showMaskPage:false,
+				isFocus:false,
 				showSharePage:false,
 				msg:'',
 				showTip:true,
@@ -245,6 +252,7 @@
 				openDoor:false,
 				sceneBg:window.imgs.scene ,
 				scaleCreateImg:false,
+				showTextarea:true,
 				hotWords:window.config.hotWords
 			}
 		},
@@ -254,27 +262,14 @@
 		},
 		watch:{
 
-			showRank(val){
-				if(val){
-					if(this.rankScroll){
-						this.rankScroll.refresh();
-						return;
-					}
-					setTimeout(()=>{
-						this.rankScroll = new IScroll(this.$refs['rank'],{
-							scrollbars:true
-						});
-					},20)
-					setTimeout(()=>{
-						this.rankScroll.refresh();
-					},1000)
-				}
-			}
 		},
 		methods: {
 
 			activeRank(){
 				this.showRank = true;
+				if(!this.rankScroll){
+					this.initRankScroll();
+				}
 			},
 
 			toggleMask(flag){
@@ -410,6 +405,8 @@
 						this.scroll = new IScroll(this.$refs['talk'],{
 							scrollbars:true
 						});
+
+
 					},10)
 				},1600)
 
@@ -469,6 +466,30 @@
 			},
 			submit(){
 				var  s = this;
+				
+
+				if(this.isAndroid){
+					this.$refs['input'].blur();
+					this.$refs['mobile'].blur();
+				}
+
+
+				if(this.msg.length<=0){
+					this.errorMsg = '留言不能为空';
+					setTimeout(() => {
+						this.errorMsg = '';
+					}, 1200);
+					return;
+				}
+
+				if(!(/^1[34578]\d{9}$/.test(this.mobile))){ 
+					this.errorMsg = '手机号格式不正确';
+					setTimeout(() => {
+						this.errorMsg = '';
+					}, 1200);
+					return;
+				}
+				
 				var D = new Date();
 				var year = D.getFullYear();
 				var month = D.getMonth()+1;
@@ -477,25 +498,6 @@
 				var mins = D.getMinutes();
 				var seconds = D.getSeconds();
 
-				this.$refs['input'].blur();
-				this.$refs['mobile'].blur();
-
-				if(!(/^1[34578]\d{9}$/.test(this.mobile))){ 
-					this.errorMsg = '手机号格式不正确';
-					setTimeout(() => {
-						this.errorMsg = '';
-					}, 2000);
-					return;
-				}
-
-				if(this.msg.length<=0){
-					this.errorMsg = '留言不能为空';
-					setTimeout(() => {
-						this.errorMsg = '';
-					}, 2000);
-					return;
-				}
-				var s = this;
 				axios.post(this.host+'/xhs-security-activity/activity/user/saveUser',{
 					"secretKey": s.secretKey, // 请求秘钥
 					"nm": "hotwords", // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
@@ -572,14 +574,64 @@
 				this.showSharePage = true;
 				this.html2img();
 			},
-			blur(){
+			blur(e){
 				this.$refs['scene'].style.position = 'fixed';
 				this.$refs['scene'].style.top = 0;
+				document.body.style.position = 'relative';
+
+				
 
 
 			},
-			focus(){
+			blur1(e){
+				this.$refs['scene'].style.position = 'fixed';
+				this.$refs['scene'].style.top = 0;
+				document.body.style.position = 'relative';
+				if(!this.isAndroid){
+					this.$refs['button'].focus();
+				}
+			},
+
+			focus1(){
+				if(!this.isAndroid){
+					setTimeout(()=>{
+						this.$refs['button'].blur();
+					},100)
+				}
+			},
+
+
+			focus(e){
 				this.$refs['scene'].style.position = 'relative';
+				document.body.style.position = 'fixed';
+				
+
+			},
+			initRankScroll(){
+				setTimeout(()=>{
+					this.rankScroll = new IScroll(this.$refs['rank'],{
+						scrollbars:true
+					});
+				},20);
+				/*clearInterval(this.timer);
+
+				setTimeout(()=>{
+					this.rankScroll.refresh();
+				},2000)
+				this.timer = setInterval(()=>{
+					this.rankScroll.refresh();
+					setTimeout(()=>{
+						clearInterval(this.timer);
+					},4000)
+				},400)*/
+			},
+			textareaAction(){
+				if(this.isFocus){
+					this.showTextarea = false;
+				}else{
+
+					this.isFocus = true;
+				}
 
 			}
 		},
@@ -592,6 +644,10 @@
 				
 			});
 			var  s = this;
+			//new VConsole();a
+			//this.initRankScroll();
+
+
 
 			axios.post(s.host+"/xhs-security-activity/activity/num/getHotWords",{
 				"secretKey": s.secretKey, // 请求秘钥
@@ -615,8 +671,9 @@
 									name:hw.name,
 								}
 								this.rankingList.push(obj);
+								this.rankScroll && this.rankScroll.refresh();
 							}
-						})
+						});
 
 					});
 				}

@@ -105,7 +105,7 @@ $color: #fffb88;
             @include animation(flash 1s infinite alternate);
         }
         .zmiti-modal-list{
-
+            height: 100vh;
             ul{
                 perspective: 500px;
                 -webkit-perspective: 500px;
@@ -136,10 +136,11 @@ $color: #fffb88;
                         @include pos(a);
                         color:#fff;
                         left: 50%;
+                        text-align: center;
                         @include transform(translate3d(-50%,0,0));
                         bottom:970px;
-                        width: 80px;
-                        height: 80px;
+                        width: 75px;
+                        height: 75px;
                         @include br();
                         .zmiti-down{
                             width: 20px;
@@ -377,32 +378,52 @@ $color: #fffb88;
         .fill{
             height: 140px;
         }
+        .zmiti-submit{
+                text-align: center;
+                @include pos(a);
+                width: 350px;
+                top: 700px;
+                left: 50%;
+                z-index: 10020;
+                @include transform(translate3d(-50%,0,1px));
+                z-index: 100;
+                border:1px solid rgba(0,0,0,0);
+                &.scale{
+                    @include transform(translate3d(-50%,0,1px) scale(.95));
+                }
+
+                padding-bottom:100px;
+                img{
+                    border:1px solid rgba(0,0,0,0);
+                };
+            } 
         .zmiti-input-C{
             width: 90%;
             margin: 140px auto;
             @include pos(r);
+            button{
+                @include pos(a);
+                top:0;
+                font-size: 40px;
+            }
             textarea{
                 @include pos(a);
                 width:580px;
                 height: 340px;;
                 left: 50%;
                 @include transform(translate3d(-50%,0,0));
+
                 top: 30px;;
                 border:none;
                 outline: none;
+                
                 color:#1082b6;
                 font-size: 30px;
                 &::-webkit-input-placeholder{
                     color:#1082b6;
                 }
             }         
-            .zmiti-submit{
-                text-align: center;
-                margin-top: 40px;
-                img{
-                    width: 400px;
-                };
-            } 
+
             .zmiti-input-btns{
                 @include pos(r);
                 @include displayBox(horizontal);
@@ -412,31 +433,32 @@ $color: #fffb88;
                 }
             }
             .zmiti-mobile{
-                width: 96%;
-
-                @include br(10px);
-                height: 70px;
-                background:#6f3c38;;
-                margin: 20px auto;
-
-                @include pos(r);
-                input{
-                    @include pos(a);
-
-                    width: 100%;
+                
+                
+                    @include pos(r);
+                    width: 86%;
+                    @include br(10px);
                     height: 70px;
-                    line-height: 70px;
-                    background:transparent;
+                    background:#6f3c38;;
+                    margin: 30px auto;
+                    @include pos(f);
+                    left: 7%;
+                    top: 540px;
+
+                    height: 60px;
+                    line-height: 60px;
+                    ///background:transparent;
                     outline: none;
+                    display: block;
                     border:none;
-                    padding: 0;
+                    border:1px solid rgba(0,0,0,0);
+                    padding: 10px 0;
                     color:#f4e8a8;
                     font-size: 30px;
                     text-indent: 1em;
                     &::-webkit-input-placeholder{
                         color:#f4e8a8;
                     }
-                }
             }
             .zmiti-submit-success{
                 @include pos(a);
